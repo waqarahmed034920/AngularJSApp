@@ -1,0 +1,11 @@
+[
+    { "id": 10, "name": "waqar", "city": "Cardiff", "country": "Pakistan"},
+    { "id": 20, "name": "sohail", "city": "London", "country": "Pakistan"},
+    { "id": 30, "name": "aamir", "city": "Bradford", "country": "Pakistan"},
+    { "id": 40, "name": "umair", "city": "Karachi", "country": "Pakistan"},
+    { "id": 50, "name": "naeem", "city": "Karachi", "country": "Pakistan"},
+    { "id": 60, "name": "fahim", "city": "Karachi", "country": "Pakistan"},
+    { "id": 70, "name": "umer", "city": "Karachi", "country": "Pakistan"},
+    { "id": 80, "name": "adam", "city": "Bradford", "country": "Pakistan"},
+    { "id": 90, "name": "kaka", "city": "London", "country": "Pakistan"}
+]
