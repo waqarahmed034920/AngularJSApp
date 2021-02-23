@@ -1,47 +1,48 @@
+// creating angular application ums. (User Management System)
+var app = angular.module("ums", []);
 
+// adding controller in this app (UMS)
+app.controller("MainController", ["$scope", "$http", "UserFactory", MainController]);
 
-function MainController($scope, $http) {
+function MainController($scope, $http, UserFactory) {
     $scope.title = "My First Angular Application!";
 
-    var onGetData = (response) => {
-        $scope.users = response.data;
+    var onGetData = (data) => {
+        $scope.users = data;
     }
 
     var onError = (response) => {
         $scope.error = "An error occured while trying to get data.";
     }
 
-    $http.get('http://localhost:3000/users').then(onGetData, onError);
+    UserFactory.getAllUsers()
+    .then(onGetData, onError);
 
     $scope.onEditClick = (id) => {
-        $http.get('http://localhost:3000/user/' + id)
-        .then((response) => {
-            $scope.user = response.data;
+        UserFactory.getUserById(id)
+        .then((data) => {
+            $scope.user = data;
         }, onError);
     }
+
 
     $scope.onUpdateClick = () => {
-        $http({
-            url: 'http://localhost:3000/user',
-            method: 'PUT',
-            data: $scope.user
-        })
-        .then((response) => {
-            $http.get('http://localhost:3000/users').then(onGetData, onError);
-        }, onError);
+        UserFactory.updateUser($scope.user)
+        .then(() => {
+            UserFactory.getAllUsers().then(onGetData, onError);
+        });
     }
 
-    $scope.onDeleteClick = () => {
-        if (confirm('This would delete the user. Are you sure?')) {
-            $http({
-                url: 'http://localhost:3000/user/' + $scope.user.id,
-                method: 'DELETE'
-            })
-            .then((response) => {
-                $scope.user = {};
-                $http.get('http://localhost:3000/users').then(onGetData, onError);
-            }, onError);    
-        }
+    $scope.onDeleteClick = (id) => {
+       if (confirm("Are you sure you want to delete?")) {
+           UserFactory.onDeleteClick(id)
+           .then((result) => {
+               alert('record deleted successfully.');
+               UserFactory.getAllUsers().then(onGetData, onError);
+            });
+       }
+        
     }
 
 }
+
