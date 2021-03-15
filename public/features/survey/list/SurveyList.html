@@ -1,0 +1,23 @@
+<h3>
+    List of available surveys:
+</h3>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>StartDate</th>
+            <th>EndDate</th>
+            <th>Add Question</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="s in surveys">
+            <td>{{s.Name}}</td>
+            <td>{{s.Description}}</td>
+            <td>{{s.StartDate | date}}</td>
+            <td>{{s.EndDate | date}}</td>
+            <td><input type="button" value="Add Questions" ng-click="onAddQuestions(s.Id)" class="btn btn-sm btn-primary"></td>
+        </tr>
+    </tbody>
+</table> 

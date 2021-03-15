@@ -14,15 +14,15 @@ function UserController($scope, UserFactory) {
         $scope.error = "An error occured while trying to get data.";
     }
 
-    UserFactory.getAllUsers()
-        .then(onGetData, onError);
+        UserFactory.getAllUsers()
+            .then(onGetData, onError);
 
-    $scope.onEditClick = (id) => {
-        UserFactory.getUserById(id)
-            .then((data) => {
-                $scope.user = data;
-            }, onError);
-    }
+        $scope.onEditClick = (id) => {
+            UserFactory.getUserById(id)
+                .then((data) => {
+                    $scope.user = data;
+                }, onError);
+        }
 
 
     $scope.onUpdateClick = () => {

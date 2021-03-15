@@ -1,6 +1,5 @@
 // reterieve the application here.
 var module = angular.module("ums");
-
 module.factory("UserFactory", ["$http", UserFactory]);
 
 // object return karey ga.

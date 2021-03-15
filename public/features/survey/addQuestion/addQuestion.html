@@ -1,0 +1,41 @@
+<div style="margin-top: 20px;">
+    <h3>Add question</h3>
+    <form>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Question</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" ng-model="question.question">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <input ng-click="addOption()" class="col-sm-2 btn btn-primary" 
+            type="button" value="Add Option">
+        </div>
+
+        <div ng-repeat="option in question.options track by $index">
+            <div class="form-group row">
+                <label for="option" class="col-sm-1 col-form-label">Text</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" ng-model="option.text">
+                </div>
+                <label for="option" class="col-sm-1 col-form-label">Type</label>
+                <div class="col-sm-4">
+                    <select class="form-control" ng-model="option.type">
+                        <option value="radio">Radio</option>
+                        <option value="checkbox">Checkbox</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <input type="button" value="Delete" ng-click="deleteOption($index)">
+                </div>
+            </div>    
+        </div>
+    
+
+        <div class="form-group row">
+            <input ng-click="saveQuestion()" class="col-sm-2 btn btn-primary" type="button" value="Save">
+        </div>
+
+    </form>
+</div>
