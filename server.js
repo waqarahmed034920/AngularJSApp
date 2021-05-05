@@ -5,6 +5,8 @@ const express = require('express');
 const path = require('path');
 let users = require('./users.json');
 const { options } = require('./config');
+const { data } = require('jquery');
+const { brotliDecompress } = require('zlib');
 
 var app = express();
 const port = 3000;
@@ -16,6 +18,7 @@ app.use('/bootstrapjs', express.static(__dirname + '/node_modules/bootstrap/dist
 app.use('/angular', express.static(__dirname + '/node_modules/angular'));
 app.use('/angularRoute', express.static(__dirname + '/node_modules/angular-route'));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
+
 app.get('/', function (req, res) {
     res.status(200).sendFile('index.html');
 });
@@ -40,6 +43,7 @@ app.put('/user', (req, res) => {
     res.status(200).send(user);
 })
 
+// "update EmpSalary_Info set EmpName = '" + txtname + "' where EmpId=" + txtid,connection);
 app.delete('/user/:id', function (req, res) {
     users = users.filter(u => u.id !== +req.params.id);
     res.status(200).send('true');
@@ -91,6 +95,48 @@ app.post('/question', (req, res) => {
             res.status(501).send(err);
         });
 });
+
+app.post('/faq',(req,res) => {
+    const faq = req.body;
+    var myQuery = `insert into tblFaq(faq, answer) 
+    values('${faq.faq}','${faq.answer}')`;
+
+    db.InsertOrUpdate(myQuery)
+        .then((data) =>{
+            res.status(200).send('Record added successfully.');
+        })
+        .catch((err) =>{
+            res.status(501).setDefaultEncoding(err);
+        });
+});
+
+app.put('/faq',(req,res) =>{
+    const faq = req.body;
+    var myQuery = `update tblFaq set faq = '${faq.faq}', answer = '${faq.answer}' where id = ${faq.id}  `; 
+    
+    db.InsertOrUpdate(myQuery)
+    .then((data) =>{
+        res.status(200).send('Record update successfully');
+    })
+    .catch((err) =>{
+        res.status(501).send(err);
+    })
+    
+});
+
+app.get('/faqs', (req,res) =>{
+    
+    var myQuery = "select * from tblFaq";
+
+    db.getDataSet(myQuery)
+     .then((data) =>{
+         res.status(200).send(data);
+     },(err)=> {
+        res.status(200).send(err);
+     });
+    
+});    
+
 
 app.listen(port);
 

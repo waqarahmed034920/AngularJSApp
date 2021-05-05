@@ -1,0 +1,20 @@
+<h1>faqs list</h1>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Faqs</th>
+            <th>Answer</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <tr ng-repeat="s in faqs">
+            <td>{{s.faq}}</td>
+            <td>{{s.answer}}</td>
+
+            <td><input type="button" value="Add Faq" ng-click="onAddfaq(s.Id)" class="btn btn-sm btn-primary"></td>
+        </tr>
+        
+    </tbody>
+</table> 

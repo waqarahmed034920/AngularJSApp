@@ -1,5 +1,3 @@
-
-// adding controller in this app (UMS)
 var module = angular.module("ums");
 module.controller("UserController", ["$scope", "UserFactory", UserController]);
 

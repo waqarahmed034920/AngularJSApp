@@ -1,0 +1,28 @@
+
+<div>
+    <h3>Add New Faqs</h3>
+    <form >
+
+        <div class="form-group row">
+            <label class="col-sm-1">Faqs</label>
+            <div class="col-sm-9">
+                <input ng-model="faq.faq" class="form-control" type="text" />
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <label class="col-sm-1">Answer</label>
+            <div class="col-sm-9">
+                <input ng-model="faq.answer" class="form-control" type="text" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <input ng-click="Save()" class="col-sm-2 offset-sm-2 btn btn-primary" type="button" value="Save">
+        </div>
+        
+        
+    </form>
+
+
+</div>

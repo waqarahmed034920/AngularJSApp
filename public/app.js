@@ -23,5 +23,14 @@ app.config(function ($routeProvider) {
             templateUrl: 'features/survey/addQuestion/addQuestion.html',
             controller: 'addQuestionController'
         })
+
+        .when('/faqs', {
+            templateUrl: 'features/faqs/faqController.html',
+            controller: 'faqController'
+        })
+        .when('/faqs-list', {
+            templateUrl: 'features/faqs/list/faqlist.html',
+            controller: 'faqlistcontroller'
+        })
         .otherwise('/');
 })
